@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>com.google.code.geocoder-java</groupId>
+  <artifactId>geocoder-java</artifactId>
+  <version>0.5-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20101230.185156</timestamp>
+      <buildNumber>1</buildNumber>
+    </snapshot>
+    <lastUpdated>20101230185157</lastUpdated>
+  </versioning>
+</metadata>
