@@ -2,11 +2,11 @@
 <metadata>
   <groupId>com.google.code.geocoder-java</groupId>
   <artifactId>geocoder-java</artifactId>
-  <version>0.5-SNAPSHOT</version>
   <versioning>
     <versions>
       <version>0.5-SNAPSHOT</version>
+      <version>0.6-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20101230185156</lastUpdated>
+    <lastUpdated>20110613201230</lastUpdated>
   </versioning>
 </metadata>
