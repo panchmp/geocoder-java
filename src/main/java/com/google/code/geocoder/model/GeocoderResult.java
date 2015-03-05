@@ -14,6 +14,7 @@ public class GeocoderResult implements Serializable {
     private List<GeocoderAddressComponent> addressComponents;
     private GeocoderGeometry geometry;
     private boolean partialMatch;
+    private List<String> postcodeLocalities;
 
     public List<String> getTypes() {
         return types;
@@ -54,6 +55,14 @@ public class GeocoderResult implements Serializable {
     public void setPartialMatch(boolean partialMatch) {
         this.partialMatch = partialMatch;
     }
+    
+    public List<String> getPostcodeLocalities() {
+        return postcodeLocalities;
+    }
+    
+    public void setPostcodeLocalities(List<String> postcodeLocalities) {
+        this.postcodeLocalities = postcodeLocalities;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -69,6 +78,7 @@ public class GeocoderResult implements Serializable {
             return false;
         if (geometry != null ? !geometry.equals(that.geometry) : that.geometry != null) return false;
         if (types != null ? !types.equals(that.types) : that.types != null) return false;
+        if (postcodeLocalities != null ? !postcodeLocalities.equals(that.postcodeLocalities) : that.postcodeLocalities != null) return false;
 
         return true;
     }
@@ -80,6 +90,7 @@ public class GeocoderResult implements Serializable {
         result = 31 * result + (addressComponents != null ? addressComponents.hashCode() : 0);
         result = 31 * result + (geometry != null ? geometry.hashCode() : 0);
         result = 31 * result + (partialMatch ? 1 : 0);
+        result = 31 * result + (postcodeLocalities != null ? postcodeLocalities.hashCode() : 0);
         return result;
     }
 
@@ -91,6 +102,7 @@ public class GeocoderResult implements Serializable {
                 ", addressComponents=" + addressComponents +
                 ", geometry=" + geometry +
                 ", partialMatch=" + partialMatch +
+                ", postcodeLocalities=" + postcodeLocalities +
                 '}';
     }
 }
