@@ -111,8 +111,8 @@ public class Geocoder {
             url.append("&address=").append(URLEncoder.encode(address, ENCODING));
         } else if (location != null) {
             url.append("&latlng=").append(URLEncoder.encode(location.toUrlValue(), ENCODING));
-        } else {
-            throw new IllegalArgumentException("Address or location must be defined");
+        } else if (components.isEmpty()) {
+            throw new IllegalArgumentException("Address, location or components must be defined");
         }
         if (language != null && language.length() > 0) {
             url.append("&language=").append(URLEncoder.encode(language, ENCODING));
