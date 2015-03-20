@@ -312,9 +312,9 @@
     <!--<ciManagement>...</ciManagement>-->
     <!--<mailingLists>...</mailingLists>-->
     <scm>
-        <connection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</connection>
-        <developerConnection>scm:svn:https://geocoder-java.googlecode.com/svn/trunk/</developerConnection>
-        <url>https://geocoder-java.googlecode.com/svn/trunk/</url>
+        <connection>scm:git:git@github.com:panchmp/geocoder-java.git</connection>
+        <developerConnection>scm:git:git@github.com:panchmp/geocoder-java.git</developerConnection>
+        <url>scm:git:git@github.com:panchmp/geocoder-java.git</url>
     </scm>
     <!--<prerequisites>...</prerequisites>-->
     <repositories>
