@@ -1,11 +1,3 @@
-<<<<<<< HEAD
 .idea
 target/
-
 *.iml
-=======
-/target/
-/.classpath
-/.project
-/.settings/
->>>>>>> pr/50
