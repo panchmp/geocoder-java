@@ -30,12 +30,18 @@ public class Geocoder {
     private static final String GEOCODE_REQUEST_QUERY_BASIC = "/maps/api/geocode/json?sensor=false";
     private static final String ENCODING = "UTF-8";
 
-    private final String clientId;
-    private final Mac mac;
+    private String clientId = null;
+    private Mac mac =  null;
+    private String key = null;
 
     public Geocoder() {
-        clientId = null;
-        mac = null;
+    }
+
+    public Geocoder(final String key) {
+        if (key == null || key.length() == 0) {
+            throw new IllegalArgumentException("Key is not defined");
+        }
+        this.key = key;
     }
 
     public Geocoder(final String clientId, final String clientKey) throws InvalidKeyException {
@@ -49,7 +55,6 @@ public class Geocoder {
         this.clientId = clientId;
         this.mac = getMAC(clientKey);
     }
-
 
     public GeocodeResponse geocode(final GeocoderRequest geocoderRequest) throws IOException {
 
@@ -79,11 +84,13 @@ public class Geocoder {
         logger.trace("Request {}", geocoderRequest);
         final StringBuilder url = getURLQuery(geocoderRequest);
 
-        if (mac == null) {
+        if (mac == null && key == null) {
             // add server name to URL
             url.insert(0, GEOCODE_REQUEST_SERVER_HTTP);
         } else {
-            addClientIdAndSignURL(url);
+            if (mac != null) {
+                addClientIdAndSignURL(url);
+            }
 
             // add server name to URL
             url.insert(0, GEOCODE_REQUEST_SERVER_HTTPS);
@@ -111,8 +118,8 @@ public class Geocoder {
             url.append("&address=").append(URLEncoder.encode(address, ENCODING));
         } else if (location != null) {
             url.append("&latlng=").append(URLEncoder.encode(location.toUrlValue(), ENCODING));
-        } else if (components.isEmpty()) {
-            throw new IllegalArgumentException("Address, location or components must be defined");
+        } else {
+            throw new IllegalArgumentException("Address or location must be defined");
         }
         if (language != null && language.length() > 0) {
             url.append("&language=").append(URLEncoder.encode(language, ENCODING));
@@ -137,6 +144,9 @@ public class Geocoder {
                 url.append(URLEncoder.encode(entry.getValue(), ENCODING));
             }
 
+        }
+        if (key != null && !key.isEmpty()) {
+            url.append("&key=").append(URLEncoder.encode(key, ENCODING));
         }
         logger.trace("URL query: {}", url);
         return url;
