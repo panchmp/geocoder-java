@@ -17,6 +17,11 @@ public class GeocoderTest extends BaseGeocoderTest {
         new Geocoder("", "someClientKey");
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testCreationKeyFail() throws Exception {
+        new Geocoder("");
+    }
+
     @Test
     public void testURLParams() throws Exception {
         String res;
@@ -47,5 +52,13 @@ public class GeocoderTest extends BaseGeocoderTest {
 
         res = GeocoderIT.geocoder.getURL(new GeocoderRequestBuilder().setAddress("Torun").addComponent(GeocoderComponent.ADMINISTRATIVE_AREA, "TX").addComponent(GeocoderComponent.COUNTRY, "FR").getGeocoderRequest());
         assertEquals("http://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=Torun&components=administrative_area:TX%7Ccountry:FR", res);
+    }
+
+    @Test
+    public void testKeyGetsInsertedIntoSecureURL() throws Exception {
+        String res;
+
+        res = GeocoderIT.geocoderWithKey.getURL(new GeocoderRequestBuilder().setAddress("118 Nueces Austin TX 78701").getGeocoderRequest());
+        assertEquals("https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=118+Nueces+Austin+TX+78701&key=myKey", res);
     }
 }

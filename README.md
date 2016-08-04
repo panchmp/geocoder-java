@@ -10,7 +10,7 @@ Now artifact deployed to central repository
   <dependency>
     <groupId>com.google.code.geocoder-java</groupId>
     <artifactId>geocoder-java</artifactId>
-    <version>0.16</version>
+    <version>1.0.0</version>
   </dependency>
   <!-- ... -->
 </dependencies>
@@ -39,9 +39,16 @@ GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress("Paris
 GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
 ```
 
-#### Google Map API Premier
+#### Google Map API Premier Using Client ID
 ```java
 final Geocoder geocoder = new Geocoder("clientId","clientKey");
+GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("en").getGeocoderRequest();
+GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
+```
+
+#### Google Map API Premier Using API Key
+```java
+final Geocoder geocoder = new Geocoder("key");
 GeocoderRequest geocoderRequest = new GeocoderRequestBuilder().setAddress("Paris, France").setLanguage("en").getGeocoderRequest();
 GeocodeResponse geocoderResponse = geocoder.geocode(geocoderRequest);
 ```
